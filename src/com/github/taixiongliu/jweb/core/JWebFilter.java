@@ -1,0 +1,37 @@
+package com.github.taixiongliu.jweb.core;
+
+import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.base.Sentence;
+import com.github.taixiongliu.jweb.code.JWebFilterCode;
+
+public class JWebFilter extends JWebView{
+	private JWebFilterCode filterCode;
+	public JWebFilter(JWebContext context) {
+		// TODO Auto-generated constructor stub
+		super(context, context.named());
+		initView();
+	}
+	private void initView(){
+		filterCode = new JWebFilterCode(getName());
+		context.e(filterCode.create());
+	}
+	
+	public Sentence isStoreId(Expression text){
+		return new Sentence(filterCode.isStoreId(text));
+	}
+	public Sentence isAccount(Expression text){
+		return new Sentence(filterCode.isAccount(text));
+	}
+	public Sentence isNumber(Expression text){
+		return new Sentence(filterCode.isNumber(text));
+	}
+	public Sentence isPhoneNumber(Expression text){
+		return new Sentence(filterCode.isPhoneNumber(text));
+	}
+	public Sentence isCount(Expression text){
+		return new Sentence(filterCode.isCount(text));
+	}
+	public Sentence isSqlKey(Expression text){
+		return new Sentence(filterCode.isSqlKey(text));
+	}
+}

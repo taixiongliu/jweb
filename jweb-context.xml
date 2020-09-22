@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean>
+		<id>0</id>
+		<pid>-1</pid>
+		<icon></icon>
+		<title>后台管理-首页</title>
+		<name>index</name>
+		<menuName>首页</menuName>
+		<activity></activity>
+	</bean>
+	<bean>
+		<id>1</id>
+		<pid>0</pid>
+		<icon>icons/icon_menuitem.png</icon>
+		<title></title>
+		<name></name>
+		<menuName>系统管理</menuName>
+		<activity></activity>
+	</bean>
+	<bean>
+		<id>2</id>
+		<pid>1</pid>
+		<icon>icons/icon_menuitem.png</icon>
+		<title>后台管理-demo管理</title>
+		<name>user</name>
+		<menuName>demo管理</menuName>
+		<activity>com.github.taixiongliu.jwebdemo.activity.MainActivity</activity>
+	</bean>
+	<bean>
+		<id>3</id>
+		<pid>1</pid>
+		<icon>icons/icon_menuitem.png</icon>
+		<title>后台管理-用户管理</title>
+		<name>user</name>
+		<menuName>用户管理</menuName>
+		<activity>com.github.taixiongliu.jwebdemo.activity.UserActivity</activity>
+	</bean>
+</beans>

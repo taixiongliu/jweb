@@ -1,0 +1,15 @@
+.ele_layout{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+.ele_fl{
+	float: left;
+}
+.ele_fr{
+	float: right;
+}
+.ele_cl{
+	clear: both;
+}
