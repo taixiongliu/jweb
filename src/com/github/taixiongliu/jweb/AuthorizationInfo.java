@@ -1,5 +1,7 @@
 package com.github.taixiongliu.jweb;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.github.taixiongliu.jweb.enums.UserType;
 
 public class AuthorizationInfo {
@@ -9,6 +11,19 @@ public class AuthorizationInfo {
 	private String passwd;
 	private UserType userType;
 	private boolean able;
+	private ConcurrentHashMap<String, Object> properties;
+	public AuthorizationInfo() {
+		// TODO Auto-generated constructor stub
+		properties = new ConcurrentHashMap<String, Object>();
+	}
+	
+	public void setProperty(String key, Object value){
+		properties.put(key, value);
+	}
+	public Object getProperty(String key){
+		return properties.get(key);
+	}
+	
 	public int getId() {
 		return id;
 	}

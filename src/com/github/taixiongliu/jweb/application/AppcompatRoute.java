@@ -112,7 +112,6 @@ public abstract class AppcompatRoute extends ApplicationRoute{
 		}
 		//账号验证，没有缓存密码，需要重新获取账号信息
 		AuthorizationInfo entity = (AuthorizationInfo)session.getEntity();
-		System.out.println("缓存账号："+entity.getAccount());
 		AuthorizationInfo temp = getAuthorizationInfo(entity.getAccount());
 		if(temp == null){
 			response.setContent(response(403, "authorization disabled. #code:2"));
