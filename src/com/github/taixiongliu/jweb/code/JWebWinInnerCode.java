@@ -14,10 +14,10 @@ public class JWebWinInnerCode extends JWebCode{
 	}
 	
 	public Expression getWidth(){
-		return new Expression(name+".getWidth()"); 
+		return ExpressionFormat("getWidth");
 	}
 	public Expression getHeight(){
-		return new Expression(name+".getHeight()"); 
+		return ExpressionFormat("getHeight");
 	}
 	public String addResizeHandler(EventHandler handler){
 		return codeFormat("addResizeHandler", handler);

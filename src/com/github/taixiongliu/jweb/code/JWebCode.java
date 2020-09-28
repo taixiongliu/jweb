@@ -1,5 +1,6 @@
 package com.github.taixiongliu.jweb.code;
 
+import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSBase;
 
 public class JWebCode{
@@ -52,5 +53,22 @@ public class JWebCode{
 		}
 		sb.append(");");
 		return sb.toString();
+	}
+	protected Expression ExpressionFormat(String method, Object... values){
+		if(values == null){
+			return ExpressionFormat(method);
+		}
+		
+		StringBuilder sb = new StringBuilder(name);
+		sb.append(".").append(method).append("(");
+		int last = values.length - 1;
+		for(int i = 0; i < values.length; i++){
+			sb.append(JSBase.formatValue(values[i]));
+			if(i != last){
+				sb.append(",");
+			}
+		}
+		sb.append(")");
+		return new Expression(sb.toString());
 	}
 }
