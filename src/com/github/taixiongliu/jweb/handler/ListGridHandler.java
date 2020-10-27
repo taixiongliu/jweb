@@ -61,7 +61,7 @@ public abstract class ListGridHandler {
 		return jo;
 	}
 	
-	public class Menu{
+	public static class Menu{
 		private String text;
 		private ItemClickHandler handler;
 		private ItemClickHandler format;
@@ -90,7 +90,7 @@ public abstract class ListGridHandler {
 		}
 	}
 	
-	public class Field{
+	public static class Field{
 		private String fieldName;
 		private String textName;
 		private String fieldWidth;

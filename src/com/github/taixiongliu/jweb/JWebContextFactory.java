@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.taixiongliu.hapi.dom.DOMParser;
+import com.github.taixiongliu.jweb.handler.ListGridHandler.Field;
 
 /**
  * <b>Scan annotation create and cache router instance</b>
@@ -65,6 +66,28 @@ public class JWebContextFactory {
 			beans.add(bean);
 		}
 		System.out.println("jweb component read "+beans.size()+" records.");
+	}
+	
+	/**
+	 * <b>create fields by context</b>
+	 * @param context configuration file name
+	 */
+	public List<Field> createFields(String context){
+		DOMParser parser = new DOMParser();
+		List<Map<String, String>> maps = parser.parseListMap(context);
+		if(maps == null){
+			return null;
+		}
+		List<Field> fields = new ArrayList<Field>();
+		for(Map<String, String> map : maps){
+			String fieldName = map.get("fieldName");
+			String textName = map.get("textName");
+			Field bean = new Field(fieldName, textName);
+			
+			bean.setFieldWidth(map.get("fieldWidth"));
+			fields.add(bean);
+		}
+		return fields;
 	}
 
 	public List<ComponentBean> getBeans() {

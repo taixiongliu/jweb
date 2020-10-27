@@ -8,6 +8,9 @@ public class IconLabelOpts implements EntityOpts{
 	private String icon;
 	private String text;
 	private ItemClickHandler onclick;
+	private String style;
+	private String focusStyle;
+	private String textStyle;
 	public String getIcon() {
 		return icon;
 	}
@@ -27,6 +30,24 @@ public class IconLabelOpts implements EntityOpts{
 		this.onclick = onclick;
 	}
 
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getFocusStyle() {
+		return focusStyle;
+	}
+	public void setFocusStyle(String focusStyle) {
+		this.focusStyle = focusStyle;
+	}
+	public String getTextStyle() {
+		return textStyle;
+	}
+	public void setTextStyle(String textStyle) {
+		this.textStyle = textStyle;
+	}
 	@Override
 	public JSObject toJSObject() {
 		// TODO Auto-generated method stub
@@ -39,6 +60,15 @@ public class IconLabelOpts implements EntityOpts{
 		}
 		if(onclick != null){
 			jo.putProperty("onclick", onclick);
+		}
+		if(style != null){
+			jo.putProperty("style", style);
+		}
+		if(focusStyle != null){
+			jo.putProperty("focusStyle", focusStyle);
+		}
+		if(textStyle != null){
+			jo.putProperty("textStyle", textStyle);
 		}
 		return jo;
 	}
