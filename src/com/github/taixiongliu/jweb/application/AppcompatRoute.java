@@ -32,6 +32,28 @@ public abstract class AppcompatRoute extends ApplicationRoute{
 	public abstract AuthorizationInfo getAuthorizationInfo(String account);
 	public abstract boolean updatePassword(AuthorizationInfo info, String npasswd);
 	
+	@RequestMapping(value="")
+	public void jweb_default(HapiHttpRequest request, HapiHttpResponse response){
+		Session session = getSession(request);
+		if(session == null){
+			response.setHead(HttpHeaderNames.CONTENT_TYPE.toString(), "text/html");
+			response.setContent(jweb_forwardHtml("login.html"));
+			return ;
+		}
+		
+		response.setHead(HttpHeaderNames.CONTENT_TYPE.toString(), "text/html");
+		int page = 0;
+		Object obj = request.getParameter("page");
+		if(obj != null){
+			page = Integer.parseInt(obj.toString());
+		}
+		ComponentBean bean = JWebContextFactory.getInstance().getBean(page);
+		if(bean == null){
+			return ;
+		}
+		response.setContent(jweb_getHtml(bean,session.toSessionId()));
+	}
+	
 	@RequestMapping(value="index.html")
 	public void jweb_index(HapiHttpRequest request, HapiHttpResponse response){
 		Session session = getSession(request);
