@@ -1,6 +1,7 @@
-package com.github.taixiongliu.jweb.code;
+package com.github.taixiongliu.jweb.code.utils;
 
 import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.code.JWebCode;
 
 public class JWebFilterCode extends JWebCode{
 
@@ -9,7 +10,7 @@ public class JWebFilterCode extends JWebCode{
 		// TODO Auto-generated constructor stub
 	}
 	public String create(){
-		return constructor("Filter");
+		return constructor("Utils.Filter");
 	}
 	
 	public String isStoreId(Expression text){

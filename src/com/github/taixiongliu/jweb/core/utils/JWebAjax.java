@@ -1,11 +1,13 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSBase;
-import com.github.taixiongliu.jweb.code.JWebAjaxCode;
+import com.github.taixiongliu.jweb.code.utils.JWebAjaxCode;
+import com.github.taixiongliu.jweb.core.JWebContext;
+import com.github.taixiongliu.jweb.core.JWebView;
 import com.github.taixiongliu.jweb.handler.AjaxCallbackHandler;
 
 public class JWebAjax extends JWebView{

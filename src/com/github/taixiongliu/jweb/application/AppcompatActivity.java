@@ -12,7 +12,6 @@ import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSArray;
 import com.github.taixiongliu.jweb.base.JSBase;
 import com.github.taixiongliu.jweb.base.JSObject;
-import com.github.taixiongliu.jweb.core.JWebAjax;
 import com.github.taixiongliu.jweb.core.JWebAjaxLoad;
 import com.github.taixiongliu.jweb.core.JWebAlert;
 import com.github.taixiongliu.jweb.core.JWebBasic;
@@ -23,7 +22,8 @@ import com.github.taixiongliu.jweb.core.JWebImage;
 import com.github.taixiongliu.jweb.core.JWebLabel;
 import com.github.taixiongliu.jweb.core.JWebLayout;
 import com.github.taixiongliu.jweb.core.JWebMenuList;
-import com.github.taixiongliu.jweb.core.JWebWinInner;
+import com.github.taixiongliu.jweb.core.utils.JWebAjax;
+import com.github.taixiongliu.jweb.core.utils.JWebWinInner;
 import com.github.taixiongliu.jweb.handler.AjaxCallbackHandler;
 import com.github.taixiongliu.jweb.handler.ItemClickHandler;
 import com.github.taixiongliu.jweb.handler.MenuListItemHandler;
@@ -43,6 +43,10 @@ public abstract class AppcompatActivity extends Activity{
 	protected JWebAjaxLoad ajaxLoad;
 	protected JWebAlert alert;
 	protected JWebConfirm confirm;
+	
+	static{
+		importJS("views/top.js");
+	}
 	
 	public AppcompatActivity(ComponentBean bean, Session session) {
 		// TODO Auto-generated constructor stub

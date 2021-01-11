@@ -2,10 +2,10 @@ package com.github.taixiongliu.jweb.window;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSBase;
-import com.github.taixiongliu.jweb.core.JWebAjax;
 import com.github.taixiongliu.jweb.core.JWebBasic;
 import com.github.taixiongliu.jweb.core.JWebContext;
 import com.github.taixiongliu.jweb.core.JWebPopWindow;
+import com.github.taixiongliu.jweb.core.utils.JWebAjax;
 import com.github.taixiongliu.jweb.form.FormButtonWidget;
 import com.github.taixiongliu.jweb.form.FormItem;
 import com.github.taixiongliu.jweb.form.FormPasswordWidget;

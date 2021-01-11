@@ -1,6 +1,7 @@
-package com.github.taixiongliu.jweb.code;
+package com.github.taixiongliu.jweb.code.utils;
 
 import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.code.JWebCode;
 import com.github.taixiongliu.jweb.handler.AjaxCallbackHandler;
 
 public class JWebAjaxCode extends JWebCode{
@@ -10,7 +11,7 @@ public class JWebAjaxCode extends JWebCode{
 		// TODO Auto-generated constructor stub
 	}
 	public String create(){
-		return constructor("Ajax");
+		return constructor("Utils.Ajax");
 	}
 	
 	public String setMethod(String method){

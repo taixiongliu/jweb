@@ -1,8 +1,10 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.utils;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.Sentence;
-import com.github.taixiongliu.jweb.code.JWebFilterCode;
+import com.github.taixiongliu.jweb.code.utils.JWebFilterCode;
+import com.github.taixiongliu.jweb.core.JWebContext;
+import com.github.taixiongliu.jweb.core.JWebView;
 
 public class JWebFilter extends JWebView{
 	private JWebFilterCode filterCode;

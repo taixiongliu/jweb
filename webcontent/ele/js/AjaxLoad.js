@@ -12,14 +12,14 @@
 			var bg = new Ele.Layout("ele_shade_bg");
 			
 			var content = new Ele.Layout("ele_ajaxload_content");
-			var winInner = new Ele.WinInner();
+			var winInner = new Ele.Utils.WinInner();
 			var width = winInner.getWidth();
 			var height = winInner.getHeight();
 			content.ele.style.marginTop = (height/2 - 18)+"px";
 			content.ele.style.marginLeft = (width/2 - 90)+"px";
 			
 			var img_panel = new Ele.Layout("ele_ajaxload_content_img");
-			var img_item = new Ele.Img(Ele._pathPrefix+"ele/icons/load.gif");
+			var img_item = new Ele.Img(Ele._pathPrefix+"ele/icons/ajax-loader.gif");
 			img_panel.add(img_item);
 			this._msg = new Ele.Layout("ele_ajaxload_content_msg");
 			this._msg.setAlign("center");

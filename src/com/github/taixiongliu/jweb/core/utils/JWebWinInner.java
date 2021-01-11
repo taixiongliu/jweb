@@ -1,6 +1,9 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.utils;
 
-import com.github.taixiongliu.jweb.code.JWebWinInnerCode;
+import com.github.taixiongliu.jweb.code.utils.JWebWinInnerCode;
+import com.github.taixiongliu.jweb.core.JWebBasic;
+import com.github.taixiongliu.jweb.core.JWebContext;
+import com.github.taixiongliu.jweb.core.JWebView;
 import com.github.taixiongliu.jweb.handler.WindowResizeHandler;
 
 public class JWebWinInner extends JWebView{

@@ -1,5 +1,5 @@
 (function(){
-	var Filter = Ele.Filter = function() {
+	var Filter = Ele.Utils.Filter = function() {
 		this.eleType = "util";
 		this.ele;
 		this._sqlkey = ["*", "/", "-", "'", "+"];
@@ -27,6 +27,18 @@
 		Filter.prototype.isCount = function(count) {
 			var reg = /^([1-9]|[1-9][0-9]*)$/;
 			return reg.test(count);
+		};
+		Filter.prototype.isChinese = function(str) {
+			var reg = /^[\u4E00-\u9FA5]$/;
+			return reg.test(str);
+		};
+		Filter.prototype.isUpper = function(str) {
+			var reg = /^[A-Z]$/;
+			return reg.test(str);
+		};
+		Filter.prototype.isLower = function(str) {
+			var reg = /^[a-z]$/;
+			return reg.test(str);
 		};
 	
 		Filter.prototype.isSqlKey = function(name) {

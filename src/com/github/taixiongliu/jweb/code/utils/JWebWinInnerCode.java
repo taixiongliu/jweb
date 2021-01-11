@@ -1,6 +1,7 @@
-package com.github.taixiongliu.jweb.code;
+package com.github.taixiongliu.jweb.code.utils;
 
 import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.code.JWebCode;
 import com.github.taixiongliu.jweb.event.EventHandler;
 
 public class JWebWinInnerCode extends JWebCode{
@@ -10,7 +11,7 @@ public class JWebWinInnerCode extends JWebCode{
 		// TODO Auto-generated constructor stub
 	}
 	public String create(){
-		return constructor("WinInner");
+		return constructor("Utils.WinInner");
 	}
 	
 	public Expression getWidth(){
