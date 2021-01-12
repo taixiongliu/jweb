@@ -24,6 +24,7 @@ import com.github.taixiongliu.jweb.core.JWebLayout;
 import com.github.taixiongliu.jweb.core.JWebMenuList;
 import com.github.taixiongliu.jweb.core.utils.JWebAjax;
 import com.github.taixiongliu.jweb.core.utils.JWebWinInner;
+import com.github.taixiongliu.jweb.core.views.JWebMasking;
 import com.github.taixiongliu.jweb.handler.AjaxCallbackHandler;
 import com.github.taixiongliu.jweb.handler.ItemClickHandler;
 import com.github.taixiongliu.jweb.handler.MenuListItemHandler;
@@ -44,10 +45,6 @@ public abstract class AppcompatActivity extends Activity{
 	protected JWebAlert alert;
 	protected JWebConfirm confirm;
 	
-	static{
-		importJS("views/top.js");
-	}
-	
 	public AppcompatActivity(ComponentBean bean, Session session) {
 		// TODO Auto-generated constructor stub
 		super(bean, session);
@@ -64,6 +61,9 @@ public abstract class AppcompatActivity extends Activity{
 		ajaxLoad = new JWebAjaxLoad(context);
 		alert = new JWebAlert(context);
 		confirm = new JWebConfirm(context);
+		JWebWinInner winInner = new JWebWinInner(context);
+		JWebMasking masking = new JWebMasking(context);
+		root.appendChild(masking);
 		//ajaxLoad.setMsg("自定义加载内容");
 		//ajaxLoad.show();
 		
@@ -89,7 +89,7 @@ public abstract class AppcompatActivity extends Activity{
 		JWebLayout menuListView = new JWebLayout(context, "jweb_system_menu_list_view");
 		JWebLayout menuBlodDivider = new JWebLayout(context, "jweb_menu_blod_divider");
 		
-		JWebWinInner winInner = new JWebWinInner(context);
+		
 		JWebBasic innerHeight = winInner.getHeight();
 		
 		JWebMenuList menuList = new JWebMenuList(context, new MenuListItemHandler(context) {
