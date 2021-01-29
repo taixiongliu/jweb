@@ -1,7 +1,9 @@
 package com.github.taixiongliu.jweb.core;
 
+import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSObject;
 import com.github.taixiongliu.jweb.code.JWebVLayoutCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 import com.github.taixiongliu.jweb.opts.HLayoutOpts;
 
 public class JWebVLayout extends JWebEleJSView{
@@ -45,8 +47,8 @@ public class JWebVLayout extends JWebEleJSView{
 	public void clear(){
 		context.e(vLayoutCode.clear());
 	}
-	public JWebBasic getView(){
-		return new JWebBasic(context, vLayoutCode.getView());
+	public Expression getView(){
+		return vLayoutCode.getView();
 	}
 	public JWebContext getContext(){
 		return context;

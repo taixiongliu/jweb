@@ -2,12 +2,18 @@ package com.github.taixiongliu.jweb.code;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSObject;
-import com.github.taixiongliu.jweb.base.Sentence;
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 
 public class JWebHLayoutCode extends JWebEleJSCode{
 	public JWebHLayoutCode(String name) {
 		// TODO Auto-generated constructor stub
 		super(name);
+	}
+	public String inflate(){
+		return inflator("HLayout");
+	}
+	public String inflate(String styleName){
+		return inflator("HLayout", styleName);
 	}
 	public String create(){
 		return constructor("HLayout");
@@ -27,8 +33,8 @@ public class JWebHLayoutCode extends JWebEleJSCode{
 	public String setContainerById(String id){
 		return codeFormat("setContainerById", id);
 	}
-	public Sentence getView(){
-		return new Sentence(codeFormat("getView"));
+	public Expression getView(){
+		return new Expression(codeFormat("getView"));
 	}
 	public String clear(){
 		return codeFormat("clear");

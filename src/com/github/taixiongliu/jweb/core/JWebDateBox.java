@@ -2,6 +2,7 @@ package com.github.taixiongliu.jweb.core;
 
 import com.github.taixiongliu.jweb.base.Sentence;
 import com.github.taixiongliu.jweb.code.JWebDateBoxCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 import com.github.taixiongliu.jweb.event.EventHandler;
 
 public class JWebDateBox extends JWebEleJSView{

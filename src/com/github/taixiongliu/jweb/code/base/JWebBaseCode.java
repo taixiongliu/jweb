@@ -1,22 +1,24 @@
-package com.github.taixiongliu.jweb.code;
+package com.github.taixiongliu.jweb.code.base;
 
 import com.github.taixiongliu.jweb.base.JSBase;
 
-public class JWebBasicCode extends JWebCode{
+public class JWebBaseCode extends JWebCode{
 	private JSBase base;
-	public JWebBasicCode(String name) {
+	public JWebBaseCode(String name) {
 		// TODO Auto-generated constructor stub
-		this(name,"");
+		this(name, null);
 	}
-	public JWebBasicCode(String name, Object value) {
+	public JWebBaseCode(String name, Object value) {
 		// TODO Auto-generated constructor stub
 		super(name);
 		base = new JSBase(name, value);
 	}
 	
-	
-	public String create(){
+	public String inflate(){
 		return base.getValueCode();
+	}
+	public String create(){
+		return base.getCode();
 	}
 	public String getName(){
 		return name;

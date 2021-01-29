@@ -2,6 +2,7 @@ package com.github.taixiongliu.jweb.core;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.code.JWebListGridCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 import com.github.taixiongliu.jweb.handler.ListGridHandler;
 
 public class JWebListGrid extends JWebEleJSView{

@@ -1,17 +1,18 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.base;
 
 import com.github.taixiongliu.jweb.base.Expression;
-import com.github.taixiongliu.jweb.code.JWebBasicCode;
+import com.github.taixiongliu.jweb.code.base.JWebBaseCode;
+import com.github.taixiongliu.jweb.core.JWebContext;
 
-public class JWebBasic extends JWeb{
-	private JWebBasicCode basicCode;
-	public JWebBasic(JWebContext context, Object object) {
+public class JWebBase extends JWeb{
+	private JWebBaseCode basicCode;
+	public JWebBase(JWebContext context, Object object) {
 		// TODO Auto-generated constructor stub
 		super(context);
 		initView(object);
 	}
 	private void initView(Object object){
-		basicCode = new JWebBasicCode(context.named(), object);
+		basicCode = new JWebBaseCode(context.named(), object);
 		context.e(basicCode.create());
 	}
 	public String getName(){

@@ -1,9 +1,9 @@
 package com.github.taixiongliu.jweb.handler;
 
 import com.github.taixiongliu.jweb.base.JSBase;
-import com.github.taixiongliu.jweb.core.JWeb;
 import com.github.taixiongliu.jweb.core.JWebContext;
-import com.github.taixiongliu.jweb.core.JWebFunction;
+import com.github.taixiongliu.jweb.core.base.JWeb;
+import com.github.taixiongliu.jweb.core.base.JWebFunction;
 import com.github.taixiongliu.jweb.event.EventHandler;
 import com.github.taixiongliu.jweb.event.IFunction;
 

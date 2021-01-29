@@ -1,7 +1,8 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.base;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSBase;
+import com.github.taixiongliu.jweb.core.JWebContext;
 
 public class JWebEleJSView extends JWebView{
 	private Expression ele;

@@ -1,6 +1,7 @@
 package com.github.taixiongliu.jweb.core;
 
 import com.github.taixiongliu.jweb.code.JWebCButtonCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 import com.github.taixiongliu.jweb.handler.ItemClickHandler;
 
 public class JWebCButton extends JWebEleJSView{

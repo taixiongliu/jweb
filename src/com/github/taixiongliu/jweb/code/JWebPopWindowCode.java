@@ -1,6 +1,7 @@
 package com.github.taixiongliu.jweb.code;
 
 import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 
 public class JWebPopWindowCode extends JWebEleJSCode{
 
@@ -8,7 +9,12 @@ public class JWebPopWindowCode extends JWebEleJSCode{
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
-
+	public String inflate(){
+		return inflator("PopWindow");
+	}
+	public String inflate(int width, int height){
+		return inflator("PopWindow", width, height);
+	}
 	public String create(){
 		return constructor("PopWindow");
 	}

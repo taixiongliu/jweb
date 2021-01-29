@@ -1,4 +1,4 @@
-package com.github.taixiongliu.jweb.code;
+package com.github.taixiongliu.jweb.code.base;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSBase;
@@ -8,6 +8,28 @@ public class JWebCode{
 	public JWebCode(String name) {
 		// TODO Auto-generated constructor stub
 		this.name = name;
+	}
+	
+	protected String inflator(String model){
+		StringBuilder sb = new StringBuilder();
+		sb.append(name).append(" = new Ele.").append(model).append("();");
+		return sb.toString();
+	}
+	protected String inflator(String model, Object... parameters){
+		if(parameters == null){
+			return constructor(model);
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(name).append(" = new Ele.").append(model).append("(");
+		int last = parameters.length - 1;
+		for(int i = 0; i < parameters.length; i++){
+			sb.append(JSBase.formatValue(parameters[i]));
+			if(i != last){
+				sb.append(",");
+			}
+		}
+		sb.append(");");
+		return sb.toString();
 	}
 	
 	protected String constructor(String model){

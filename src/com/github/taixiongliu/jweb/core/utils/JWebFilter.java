@@ -4,7 +4,7 @@ import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.Sentence;
 import com.github.taixiongliu.jweb.code.utils.JWebFilterCode;
 import com.github.taixiongliu.jweb.core.JWebContext;
-import com.github.taixiongliu.jweb.core.JWebView;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 
 public class JWebFilter extends JWebView{
 	private JWebFilterCode filterCode;

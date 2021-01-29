@@ -1,6 +1,7 @@
 package com.github.taixiongliu.jweb.code;
 
 import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 
 public class JWebAjaxLoadCode extends JWebEleJSCode {
 
@@ -8,7 +9,9 @@ public class JWebAjaxLoadCode extends JWebEleJSCode {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
-	
+	public String inflate(){
+		return inflator("AjaxLoad");
+	}
 	public String create(){
 		return constructor("AjaxLoad");
 	}

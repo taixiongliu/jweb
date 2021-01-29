@@ -3,6 +3,7 @@ package com.github.taixiongliu.jweb.core;
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.Sentence;
 import com.github.taixiongliu.jweb.code.JWebTextAreaCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 
 public class JWebTextArea extends JWebEleJSView{
 	private JWebTextAreaCode textAreaCode;

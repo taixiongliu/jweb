@@ -1,9 +1,10 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.base;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.github.taixiongliu.jweb.base.JSBase;
+import com.github.taixiongliu.jweb.core.JWebContext;
 import com.github.taixiongliu.jweb.event.IFunction;
 
 public class JWebFunction{
@@ -18,7 +19,10 @@ public class JWebFunction{
 	public JWebFunction(IFunction iFunction, String parameter, String prefix) {
 		// TODO Auto-generated constructor stub
 		this.iFunction = iFunction;
-		this.parameter = parameter;
+		this.parameter = "";
+		if(parameter != null){
+			this.parameter = parameter;
+		} 
 		properties = new HashMap<String, JSBase>();
 		context = new JWebContext(){
 			@Override

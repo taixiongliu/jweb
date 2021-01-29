@@ -3,6 +3,7 @@ package com.github.taixiongliu.jweb.core;
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSObject;
 import com.github.taixiongliu.jweb.code.JWebMenuListCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 import com.github.taixiongliu.jweb.handler.MenuListItemHandler;
 import com.github.taixiongliu.jweb.opts.MenuListOpts;
 
@@ -33,11 +34,6 @@ public class JWebMenuList extends JWebEleJSView{
 	
 	public void setHeight(String height){
 		context.e(menuListCode.setHeight(height));
-	}
-	
-	public void setHeightSub(JWebBasic basic, int subNumber){
-		String expression = "("+basic.getName()+" - "+subNumber+")+'px'";
-		context.e(menuListCode.setHeight(expression));
 	}
 	public void setHeightSub(Expression exp, int subNumber){
 		String expression = "("+exp.getExp()+" - "+subNumber+")+'px'";

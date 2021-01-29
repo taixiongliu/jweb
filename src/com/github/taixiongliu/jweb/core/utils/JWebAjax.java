@@ -7,7 +7,7 @@ import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSBase;
 import com.github.taixiongliu.jweb.code.utils.JWebAjaxCode;
 import com.github.taixiongliu.jweb.core.JWebContext;
-import com.github.taixiongliu.jweb.core.JWebView;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.handler.AjaxCallbackHandler;
 
 public class JWebAjax extends JWebView{

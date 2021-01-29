@@ -2,7 +2,7 @@ package com.github.taixiongliu.jweb.core.views;
 
 import com.github.taixiongliu.jweb.code.views.JWebEdgeBoardCode;
 import com.github.taixiongliu.jweb.core.JWebContext;
-import com.github.taixiongliu.jweb.core.JWebEleJSView;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 
 public class JWebEdgeBoard extends JWebBoardView{
 	private JWebEdgeBoardCode edgeBoardCode;

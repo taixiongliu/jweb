@@ -1,7 +1,7 @@
 package com.github.taixiongliu.jweb.core.views;
 
 import com.github.taixiongliu.jweb.core.JWebContext;
-import com.github.taixiongliu.jweb.core.JWebEleJSView;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 
 public class JWebBoardView extends JWebEleJSView{
 

@@ -2,9 +2,9 @@ package com.github.taixiongliu.jweb.window;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSBase;
-import com.github.taixiongliu.jweb.core.JWebBasic;
 import com.github.taixiongliu.jweb.core.JWebContext;
 import com.github.taixiongliu.jweb.core.JWebPopWindow;
+import com.github.taixiongliu.jweb.core.base.JWebBase;
 import com.github.taixiongliu.jweb.core.utils.JWebAjax;
 import com.github.taixiongliu.jweb.form.FormButtonWidget;
 import com.github.taixiongliu.jweb.form.FormItem;
@@ -45,8 +45,8 @@ public class UpdatePasswdWindow extends JWebPopWindow{
 			@Override
 			public void onHandler(JWebContext ct1) {
 				// TODO Auto-generated method stub
-				JWebBasic seesion = new JWebBasic(ct1, new Expression(ct1.getLocalStorage("session")));
-				JWebBasic json = new JWebBasic(ct1, new Expression(ct1.jsonParse(seesion)));
+				JWebBase seesion = new JWebBase(ct1, new Expression(ct1.getLocalStorage("session")));
+				JWebBase json = new JWebBase(ct1, new Expression(ct1.jsonParse(seesion)));
 			
 				ct1.formValidate(opasswd, npasswd, spasswd);
 				ct1.e(whenPasswdNotEquals(npasswd, spasswd));

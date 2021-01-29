@@ -2,11 +2,18 @@ package com.github.taixiongliu.jweb.code;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSObject;
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 
 public class JWebVLayoutCode extends JWebEleJSCode{
 	public JWebVLayoutCode(String name) {
 		// TODO Auto-generated constructor stub
 		super(name);
+	}
+	public String inflate(){
+		return inflator("VLayout");
+	}
+	public String inflate(String styleName){
+		return inflator("VLayout", styleName);
 	}
 	public String create(){
 		return constructor("VLayout");

@@ -1,6 +1,7 @@
 package com.github.taixiongliu.jweb.core;
 
 import com.github.taixiongliu.jweb.code.JWebLabelCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 
 public class JWebLabel extends JWebEleJSView{
 	private JWebLabelCode labelCode;

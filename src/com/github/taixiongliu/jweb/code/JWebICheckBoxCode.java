@@ -1,5 +1,6 @@
 package com.github.taixiongliu.jweb.code;
 
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 import com.github.taixiongliu.jweb.event.EventHandler;
 
 public class JWebICheckBoxCode extends JWebEleJSCode {
@@ -8,7 +9,9 @@ public class JWebICheckBoxCode extends JWebEleJSCode {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
-	
+	public String inflate(){
+		return inflator("ICheckBox");
+	}
 	public String create(){
 		return constructor("ICheckBox");
 	}

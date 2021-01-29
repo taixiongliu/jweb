@@ -1,5 +1,6 @@
 package com.github.taixiongliu.jweb.code;
 
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 import com.github.taixiongliu.jweb.event.EventHandler;
 
 public class JWebButtonCode extends JWebEleJSCode {
@@ -7,6 +8,12 @@ public class JWebButtonCode extends JWebEleJSCode {
 	public JWebButtonCode(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
+	}
+	public String inflate(String text){
+		return inflator("Button", text);
+	}
+	public String inflate(String text,String type){
+		return inflator("Button", text, type);
 	}
 	
 	public String create(String text){

@@ -1,7 +1,7 @@
 package com.github.taixiongliu.jweb.base;
 
-import com.github.taixiongliu.jweb.core.JWebBasic;
-import com.github.taixiongliu.jweb.core.JWebView;
+import com.github.taixiongliu.jweb.core.base.JWebBase;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.event.EventHandler;
 
 public class JSBase {
@@ -20,10 +20,27 @@ public class JSBase {
 	public Object getValue() {
 		return value;
 	}
+	
+	public String getCode() {
+		if(name == null || name.trim().equals("")){
+			return "";
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("var ").append(getValueCode());
+		return sb.toString();
+	}
 
 	public String getValueCode() {
+		if(name == null || name.trim().equals("")){
+			return "";
+		}
 		StringBuilder sb = new StringBuilder();
-		sb.append("var ").append(name).append("=");
+		sb.append(name);
+		if(value == null){
+			sb.append(";");
+			return sb.toString();
+		}
+		sb.append(" = ");
 		sb.append(formatValue()).append(";");
 		return sb.toString();
 	}
@@ -58,8 +75,8 @@ public class JSBase {
 			JWebView temp = (JWebView)value;
 			return temp.getName();
 		}
-		if(value instanceof JWebBasic){
-			JWebBasic temp = (JWebBasic)value;
+		if(value instanceof JWebBase){
+			JWebBase temp = (JWebBase)value;
 			return temp.getName();
 		}
 		return value.toString();

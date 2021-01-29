@@ -1,7 +1,7 @@
 package com.github.taixiongliu.jweb.code.utils;
 
 import com.github.taixiongliu.jweb.base.Expression;
-import com.github.taixiongliu.jweb.code.JWebCode;
+import com.github.taixiongliu.jweb.code.base.JWebCode;
 
 public class JWebFilterCode extends JWebCode{
 

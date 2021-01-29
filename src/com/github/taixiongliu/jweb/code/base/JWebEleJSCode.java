@@ -1,4 +1,4 @@
-package com.github.taixiongliu.jweb.code;
+package com.github.taixiongliu.jweb.code.base;
 
 public class JWebEleJSCode extends JWebCode{
 	protected String ele;

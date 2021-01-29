@@ -1,6 +1,7 @@
 package com.github.taixiongliu.jweb.code;
 
 import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 import com.github.taixiongliu.jweb.event.EventHandler;
 
 public class JWebDateBoxCode extends JWebEleJSCode {
@@ -9,7 +10,9 @@ public class JWebDateBoxCode extends JWebEleJSCode {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
-	
+	public String inflate(){
+		return inflator("DateBox");
+	}
 	public String create(){
 		return constructor("DateBox");
 	}

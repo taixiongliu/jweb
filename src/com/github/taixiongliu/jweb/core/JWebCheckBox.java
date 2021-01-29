@@ -1,6 +1,7 @@
 package com.github.taixiongliu.jweb.core;
 
 import com.github.taixiongliu.jweb.code.JWebCheckBoxCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 
 public class JWebCheckBox extends JWebEleJSView{
 	private JWebCheckBoxCode checkBoxCode;

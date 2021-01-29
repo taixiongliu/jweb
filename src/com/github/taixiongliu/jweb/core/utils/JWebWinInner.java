@@ -1,9 +1,9 @@
 package com.github.taixiongliu.jweb.core.utils;
 
+import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.code.utils.JWebWinInnerCode;
-import com.github.taixiongliu.jweb.core.JWebBasic;
 import com.github.taixiongliu.jweb.core.JWebContext;
-import com.github.taixiongliu.jweb.core.JWebView;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.handler.WindowResizeHandler;
 
 public class JWebWinInner extends JWebView{
@@ -18,11 +18,11 @@ public class JWebWinInner extends JWebView{
 		context.e(winInnerCode.create());
 	}
 	
-	public JWebBasic getHeight(){
-		return new JWebBasic(context, winInnerCode.getHeight());
+	public Expression getHeight(){
+		return winInnerCode.getHeight();
 	}
-	public JWebBasic getWidth(){
-		return new JWebBasic(context, winInnerCode.getWidth());
+	public Expression getWidth(){
+		return winInnerCode.getWidth();
 	}
 	public void addOnResizeHandler(WindowResizeHandler handler){
 		context.e(winInnerCode.addResizeHandler(handler));

@@ -19,6 +19,31 @@ public enum UserType {
 		return false;
 	}
 	
+	public String toNameString(){
+		String name = "unknow";
+		switch (value) {
+		case 1:
+			name = "超级管理员";
+			break;
+		case 2:
+			name = "普通管理员";
+			break;
+		case 3:
+			name = "操作员";
+			break;
+		case 4:
+			name = "用户";
+			break;
+		case 5:
+			name = "浏览者";
+			break;
+
+		default:
+			break;
+		}
+		return name;
+	}
+	
 	public static UserType create(int value){
 		UserType userType = null;
 		switch (value) {

@@ -3,7 +3,7 @@ package com.github.taixiongliu.jweb.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.taixiongliu.jweb.core.JWebView;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 
 public class JSArray {
 	private List<Object> properties;

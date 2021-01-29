@@ -4,6 +4,9 @@ import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSArray;
 import com.github.taixiongliu.jweb.base.JSObject;
 import com.github.taixiongliu.jweb.base.Sentence;
+import com.github.taixiongliu.jweb.core.base.JWebBase;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.form.FormItem;
 
 public abstract class JWebContext{
@@ -52,10 +55,10 @@ public abstract class JWebContext{
 		return new Sentence("window.location.replace('login.html');");
 	}
 	
-	public void replacePage(JWebBasic session, Expression pageId, JSObject parameter){
+	public void replacePage(JWebBase session, Expression pageId, JSObject parameter){
 		e(urlReplacePage(session, pageId, parameter).toCode());
 	}
-	public void replacePage(JWebBasic session, int pageId, JSObject parameter){
+	public void replacePage(JWebBase session, int pageId, JSObject parameter){
 		e(urlReplacePage(session, pageId, parameter).toCode());
 	}
 	/**
@@ -64,7 +67,7 @@ public abstract class JWebContext{
 	 * @param pageId :page ID
 	 * @param parameter :empty input 'null' please.
 	 */
-	public Sentence urlReplacePage(JWebBasic session, Expression pageId, JSObject parameter){
+	public Sentence urlReplacePage(JWebBase session, Expression pageId, JSObject parameter){
 		if(parameter == null){
 			parameter = new JSObject();
 		}
@@ -79,7 +82,7 @@ public abstract class JWebContext{
 	 * @param pageId :page ID
 	 * @param parameter :empty input 'null' please.
 	 */
-	public Sentence urlReplacePage(JWebBasic session, int pageId, JSObject parameter){
+	public Sentence urlReplacePage(JWebBase session, int pageId, JSObject parameter){
 		if(parameter == null){
 			parameter = new JSObject();
 		}
@@ -94,7 +97,7 @@ public abstract class JWebContext{
 	 * @param pageId :page ID
 	 * @param parameter :empty input 'null' please.
 	 */
-	public void loadPage(JWebBasic session, Expression pageId, JSObject parameter){
+	public void loadPage(JWebBase session, Expression pageId, JSObject parameter){
 		e(urlLoadPage(session, pageId, parameter).toCode());
 	}
 	/**
@@ -103,11 +106,11 @@ public abstract class JWebContext{
 	 * @param pageId :page ID
 	 * @param parameter :empty input 'null' please.
 	 */
-	public void loadPage(JWebBasic session, int pageId, JSObject parameter){
+	public void loadPage(JWebBase session, int pageId, JSObject parameter){
 		e(urlLoadPage(session, pageId, parameter).toCode());
 	}
 	
-	public Sentence urlLoadPage(JWebBasic session, Expression pageId, JSObject parameter){
+	public Sentence urlLoadPage(JWebBase session, Expression pageId, JSObject parameter){
 		if(parameter == null){
 			parameter = new JSObject();
 		}
@@ -117,7 +120,7 @@ public abstract class JWebContext{
 		return new Sentence("window.location.href="+href+";");
 	}
 	
-	public Sentence urlLoadPage(JWebBasic session, int pageId, JSObject parameter){
+	public Sentence urlLoadPage(JWebBase session, int pageId, JSObject parameter){
 		if(parameter == null){
 			parameter = new JSObject();
 		}
@@ -161,8 +164,8 @@ public abstract class JWebContext{
 			JSArray temp = (JSArray)value;
 			return temp.toString();
 		}
-		if(value instanceof JWebBasic){
-			JWebBasic temp = (JWebBasic)value;
+		if(value instanceof JWebBase){
+			JWebBase temp = (JWebBase)value;
 			return "'+"+temp.getName()+"+'";
 		}
 		return value.toString();
@@ -174,10 +177,10 @@ public abstract class JWebContext{
 	public String jsonParse(String jsonText){
 		return "JSON.parse(\""+jsonText+"\")";
 	}
-	public String jsonParse(JWebBasic jsonText){
+	public String jsonParse(JWebBase jsonText){
 		return "JSON.parse("+jsonText.getName()+")";
 	}
-	public String jsonStringify(JWebBasic json){
+	public String jsonStringify(JWebBase json){
 		return "JSON.stringify("+json.getName()+")";
 	}
 	public String getLocalStorage(String storage){
@@ -186,7 +189,7 @@ public abstract class JWebContext{
 	public String setLocalStorage(String storage, String value){
 		return "localStorage.setItem(\""+storage+"\",\""+value+"\")";
 	}
-	public String setLocalStorage(String storage, JWebBasic value){
+	public String setLocalStorage(String storage, JWebBase value){
 		return "localStorage.setItem(\""+storage+"\",\""+value.getName()+"\")";
 	}
 	
@@ -202,7 +205,7 @@ public abstract class JWebContext{
 	public void alert(JWebView view){
 		e("alert("+view.getName()+");");
 	}
-	public void alert(JWebBasic basic){
+	public void alert(JWebBase basic){
 		e("alert("+basic.getName()+");");
 	}
 	public void log(String msg){
@@ -214,7 +217,7 @@ public abstract class JWebContext{
 	public void log(JWebView view){
 		e("console.log("+view.getName()+");");
 	}
-	public void log(JWebBasic basic){
+	public void log(JWebBase basic){
 		e("console.log("+basic.getName()+");");
 	}
 }

@@ -3,11 +3,18 @@ package com.github.taixiongliu.jweb.code;
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSObject;
 import com.github.taixiongliu.jweb.base.Sentence;
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 
 public class JWebTextBoxCode extends JWebEleJSCode{
 	public JWebTextBoxCode(String name) {
 		// TODO Auto-generated constructor stub
 		super(name);
+	}
+	public String inflate(){
+		return inflator("TextBox");
+	}
+	public String inflate(JSObject opts){
+		return inflator("TextBox", opts);
 	}
 	public String create(JSObject opts){
 		return constructor("TextBox", opts);

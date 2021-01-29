@@ -1,6 +1,7 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.base;
 
-import com.github.taixiongliu.jweb.code.JWebElementCode;
+import com.github.taixiongliu.jweb.code.base.JWebElementCode;
+import com.github.taixiongliu.jweb.core.JWebContext;
 
 public class JWebElement extends JWebView{
 	private JWebElementCode elementCode;

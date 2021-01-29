@@ -2,6 +2,7 @@ package com.github.taixiongliu.jweb.code;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSObject;
+import com.github.taixiongliu.jweb.code.base.JWebEleJSCode;
 
 public class JWebListGridCode extends JWebEleJSCode{
 
@@ -9,7 +10,9 @@ public class JWebListGridCode extends JWebEleJSCode{
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
-	
+	public String inflate(JSObject opts){
+		return inflator("ListGrid", opts);
+	}
 	public String create(JSObject opts){
 		return constructor("ListGrid", opts);
 	}

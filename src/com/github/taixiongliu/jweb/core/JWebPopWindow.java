@@ -1,6 +1,7 @@
 package com.github.taixiongliu.jweb.core;
 
 import com.github.taixiongliu.jweb.code.JWebPopWindowCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 
 public class JWebPopWindow extends JWebEleJSView{
 	private JWebPopWindowCode popWindowCode;

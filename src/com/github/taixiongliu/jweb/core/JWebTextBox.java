@@ -4,6 +4,7 @@ import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSObject;
 import com.github.taixiongliu.jweb.base.Sentence;
 import com.github.taixiongliu.jweb.code.JWebTextBoxCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 import com.github.taixiongliu.jweb.opts.TextBoxOpts;
 
 public class JWebTextBox extends JWebEleJSView{

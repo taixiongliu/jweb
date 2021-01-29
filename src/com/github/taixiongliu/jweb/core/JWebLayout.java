@@ -1,16 +1,27 @@
 package com.github.taixiongliu.jweb.core;
 
+import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.code.JWebLayoutCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
+import com.github.taixiongliu.jweb.event.EventHandler;
 
 public class JWebLayout extends JWebEleJSView{
 	private JWebLayoutCode layoutCode;
 	public JWebLayout(JWebContext context) {
 		// TODO Auto-generated constructor stub
-		this(context, "");
+		this(context, null);
 	}
 	public JWebLayout(JWebContext context, String style) {
 		// TODO Auto-generated constructor stub
-		super(context, context.named());
+		this(context, context.named(), style, false);
+	}
+	public JWebLayout(JWebContext context, String name, String style, boolean inflate) {
+		// TODO Auto-generated constructor stub
+		super(context, name);
+		if(inflate){
+			inflateView(style);
+			return ;
+		}
 		initView(style);
 	}
 	private void initView(String style){
@@ -20,6 +31,18 @@ public class JWebLayout extends JWebEleJSView{
 			return ;
 		}
 		context.e(layoutCode.create(style));
+	}
+	private void inflateView(String style){
+		layoutCode = new JWebLayoutCode(getName());
+		if(style == null){
+			context.e(layoutCode.inflate());
+			return ;
+		}
+		context.e(layoutCode.inflate(style));
+	}
+	
+	public static JWebLayout inflate(JWebContext context, String name, String style){
+		return new JWebLayout(context, name, style, true);
 	}
 	
 	public void setAlign(String align){
@@ -44,11 +67,14 @@ public class JWebLayout extends JWebEleJSView{
 	public void clear(){
 		context.e(layoutCode.clear());
 	}
-	public JWebBasic getHeight(){
-		return new JWebBasic(context, layoutCode.getHeight());
+	public Expression getHeight(){
+		return layoutCode.getHeight();
 	}
 	public void setHeight(String height){
 		context.e(layoutCode.setHeight(height));
+	}
+	public void onClick(EventHandler handler){
+		context.e(layoutCode.onClick(handler));
 	}
 	public JWebContext getContext(){
 		return context;

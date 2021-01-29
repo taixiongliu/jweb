@@ -1,4 +1,6 @@
-package com.github.taixiongliu.jweb.core;
+package com.github.taixiongliu.jweb.core.base;
+
+import com.github.taixiongliu.jweb.core.JWebContext;
 
 public class JWeb{
 	protected JWebContext context;

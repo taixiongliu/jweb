@@ -2,18 +2,33 @@ package com.github.taixiongliu.jweb.core;
 
 import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.code.JWebAlertCode;
+import com.github.taixiongliu.jweb.core.base.JWebEleJSView;
 import com.github.taixiongliu.jweb.handler.ItemClickHandler;
 
 public class JWebAlert extends JWebEleJSView{
 	private JWebAlertCode alertCode;
 	public JWebAlert(JWebContext context) {
-		super(context, context.named());
+		this(context, context.named(), false);
+	}
+	public JWebAlert(JWebContext context, String name, boolean inflate) {
 		// TODO Auto-generated constructor stub
+		super(context, name);
+		if(inflate){
+			inflateView();
+			return ;
+		}
 		initView();
 	}
 	private void initView(){
 		alertCode = new JWebAlertCode(getName());
 		context.e(alertCode.create());
+	}
+	private void inflateView(){
+		alertCode = new JWebAlertCode(getName());
+		context.e(alertCode.inflate());
+	}
+	public static JWebAlert inflate(JWebContext context, String name){
+		return new JWebAlert(context, name, true);
 	}
 	
 	public void setMsg(String msg){
