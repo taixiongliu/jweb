@@ -1,9 +1,23 @@
 window.onload = _init;
 var ajaxload;
+var winner;
 function _init(){
-	Ele.load(function(){
+	Ele.loadComponent(['WinInner','Ajax','AjaxLoad', 'Layout','Img'],function(){
+		winner = new Ele.Utils.WinInner();
 		ajaxload = new Ele.AjaxLoad();
+		initPage();
+		winner.addResizeHandler(function(){
+			initPage();
+		});
 	});
+}
+
+function initPage(){
+	var fs = winner.getWidth() / 24;
+	if(fs < 46){
+		fs = 46;
+	}
+	document.getElementsByTagName("html")[0].style.fontSize = fs+"px";
 }
 
 function loginSubmit(){
@@ -25,7 +39,7 @@ function loginSubmit(){
 		ajaxload.hide();
 		msg.innerHTML = "验证码不能为空";
 	}
-	var ajax = new Ele.Ajax();
+	var ajax = new Ele.Utils.Ajax();
 	ajax.setParameter("account="+username+"&passwd="+password+"&authcode="+captcha);
 	ajax.request("login.jweb",function(res){
 		console.log(res);
@@ -56,7 +70,7 @@ function loginSubmit(){
 	 if(name == ""){
 		 msg.innerHTML = "请输入用户名";
 	 }
-	 var ajax = new Ele.Ajax();
+	 var ajax = new Ele.Utils.Ajax();
 	 ajax.setParameter("account="+name);
 	 ajax.request("auth_name.jweb",function(res){
 		 var json = JSON.parse(res);

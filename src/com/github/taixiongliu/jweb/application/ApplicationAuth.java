@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.github.taixiongliu.jweb.AuthorizationInfo;
 import com.github.taixiongliu.jweb.Session;
 
 public class ApplicationAuth {
@@ -35,7 +36,7 @@ public class ApplicationAuth {
 	 * @param uid
 	 * @return
 	 */
-	public Session createSession(int uid,Object entity){
+	public Session createSession(int uid,AuthorizationInfo entity){
 		String str = getRandom(20);
 		Session session = new Session(uid, entity, str);
 		session.setTokenCode(getRandom(6));
@@ -67,7 +68,7 @@ public class ApplicationAuth {
 	 * @param sessionId
 	 * @return
 	 */
-	public Object getEntity(String sessionId){
+	public AuthorizationInfo getEntity(String sessionId){
 		if(sessionId == null){
 			return null;
 		}

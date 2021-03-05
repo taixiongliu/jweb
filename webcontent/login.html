@@ -1,68 +1,68 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>用户登录</title>
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="edge" />
-	<link rel="shortcut icon" href="icons/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="ele/ele.css"/>
-	<link rel="stylesheet" type="text/css" href="css/login.css" />
-	<script src="ele/ele.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="js/login.js" charset="utf-8"></script>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link rel="stylesheet" type="text/css" href="ele/ele.css"/>
+    <link rel="stylesheet" href="css/login.css">
+	<script type="text/javascript" src="ele/ele.js" charset="utf-8"></script>
+	
 </head>
 <body onkeydown="enterlogin(event);">
-<div class="top_div"></div>
-<div style="background: rgb(255, 255, 255);border-radius: 8px;
-				-moz-border-radius: 8px;
-				-webkit-border-radius: 8px; margin: -80px auto auto; border: 1px solid rgb(231, 231, 231);border-image:none;width:400px;text-align: center;">
-    <form method="post" id="loginform">
-        <input type="hidden" name="" value=""/>
-        <input type="hidden" id="path" value="/h5adv"/>
-        <div style="width: 106px; height: 138px; position: absolute;">
-            <div class="tou"></div>
-            <div class="info"><span class="txt_main">富果岛电商</span><span class="txt">数据管理系统</span></div>
-            <!-- 
-            <div class="initial_left_hand" id="left_hand"></div>
-            <div class="initial_right_hand" id="right_hand"></div>
-             -->
+<div class="main">
+
+    <div class="header">
+        <div class="header-center fl">
+            <div class="header-title">
+                系统登录
+            </div>
+            <div class="header-img"></div>
         </div>
-        <P style="padding: 30px 0px 10px; position: relative;">
-            <span class="u_logo"></span>
-            <input class="ipt" type="text" id="username" name="username" placeholder="请输入用户名或邮箱"/>
-        </P>
-        <P style="position: relative;">
-            <span class="p_logo"></span>
-            <input class="ipt" id="password" type="password" name="password" placeholder="请输入密码"/>
-        </P>
-		<P style="padding: 10px 0px 10px; position: relative;">
-			<input class="captcha" type="text" id="captcha" name="captcha" placeholder="请输入验证码"/>
-			<img alt="验证码" src="icons/dcode.png" id="codeImage" name="codeImage" onclick="getAuthCode();" style="vertical-align:middle;border-radius:4px;width:94.5px;height:35px;cursor:pointer;">
-		</P>
-        <P style="position: relative;text-align: center; height: 32px;line-height: 32px;">
-            	<span id="hint_login_msg" class="hint_login_msg"></span>
-        </P>
-        <div style="height: 50px; line-height: 50px; margin-top: 10px;border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
-            <P style="margin: 0px 35px 20px 32px;">
-                <span style="float: left;">
-                    <a style="color: rgb(204, 204, 204);" href="javascript:void(0);">忘记密码</a>
-                </span>
-                <span style="float: right;">
-                    <a style="background: #F49001; padding: 7px 10px; border-radius: 4px; border: 1px solid #F49001; border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="javascript:;" onclick="loginSubmit()">登录</a>
-                </span>
-            </P>
+        <div class="header-bottom fl"></div>
+
+    </div>
+
+    <div class="content">
+        <div class="content-left">
+            <!--<img src="images/d.png" alt="">-->
         </div>
-    </form>
+        <div class="content-right">
+            <div class="right-infp">
+                <div class="right-infp-name">
+                    <input type="text" id="username" name="username" placeholder="请输入用户名" maxlength="12" required="" value="" autocomplete="off">
+                </div>
+                <div class="right-infp-name">
+                    <input type="password" id="password" name="password" placeholder="请输入密码" autocomplete="off">
+                </div>
+				<div class="right-infp-code">
+					<div class="right-infp-code-panel">
+						<div class="right-infp-code-img">
+							<img src="icons/dcode.png" id="codeImage" onclick="getAuthCode();" />
+						</div>
+						<div class="right-infp-code-view">
+							<input type="text" id="captcha" name="captcha" placeholder="请输验证码" autocomplete="off">
+						</div>
+					</div>
+				    
+				</div>
+
+                <div class="right-infp-btn">
+                    <button class="btn" onclick="loginSubmit()">登录</button>
+                </div>
+                
+                <div align="center">
+                   <span id="hint_login_msg" class="hint_login_msg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div class="footer" align="center">
+		<div class="footer-item">某[NAME]有限公司</div>
+		<div class="footer-info">某ICP备00000000号-1</div>
+	<div>
 </div>
 
-<div style="text-align:center;padding-top: 10px;">
-    <p>
-        <a href="http://newthor.com" target="_blank">成都世纪雷神科技有限公司</a>
-    </p>
-</div>
-<div class="bottom">
-</div>
+<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
-

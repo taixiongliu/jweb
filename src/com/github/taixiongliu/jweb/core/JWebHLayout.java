@@ -10,20 +10,38 @@ public class JWebHLayout extends JWebEleJSView{
 	private JWebHLayoutCode hLayoutCode;
 	public JWebHLayout(JWebContext context) {
 		// TODO Auto-generated constructor stub
-		this(context, "");
+		this(context, null);
 	}
 	public JWebHLayout(JWebContext context, String styleName) {
 		// TODO Auto-generated constructor stub
-		super(context, context.named());
+		this(context, styleName, context.named(), false);
+	}
+	public JWebHLayout(JWebContext context, String styleName, String name, boolean inflate) {
+		// TODO Auto-generated constructor stub
+		super(context, name);
+		hLayoutCode = new JWebHLayoutCode(getName());
+		if(inflate){
+			inflateView(styleName);
+			return ;
+		}
 		initView(styleName);
 	}
 	private void initView(String styleName){
-		hLayoutCode = new JWebHLayoutCode(getName());
 		if(styleName == null){
 			context.e(hLayoutCode.create());
 			return ;
 		}
 		context.e(hLayoutCode.create(styleName));
+	}
+	private void inflateView(String styleName){
+		if(styleName == null){
+			context.e(hLayoutCode.inflate());
+			return ;
+		}
+		context.e(hLayoutCode.inflate(styleName));
+	}
+	public static JWebHLayout inflate(JWebContext context, String styleName, String name){
+		return new JWebHLayout(context, styleName, name, true);
 	}
 	
 	public void addView(JWebEleJSView jWebView){

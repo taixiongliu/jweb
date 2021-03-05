@@ -1,8 +1,14 @@
 package com.github.taixiongliu.jweb;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
 
 import com.github.taixiongliu.hapi.dom.DOMParser;
 import com.github.taixiongliu.jweb.handler.ListGridHandler.Field;
@@ -106,4 +112,72 @@ public class JWebContextFactory {
 		}
 		return bean;
 	}
+	
+	/**
+	 * <b> read jar file </b>
+	 * @param clazz
+	 * @param fileName
+	 * @return
+	 */
+	public String readJarFile(Class<?> clazz, String fileName){
+   		String jarPath = clazz.getProtectionDomain().getCodeSource().getLocation().getPath();
+        InputStream input = null;
+        BufferedInputStream bis = null;
+        JarFile jarFile = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            jarFile = new JarFile(jarPath);
+            ZipEntry zipEntry = jarFile.getEntry(fileName);
+            //can not find the deserved file
+            if (zipEntry == null) {
+                System.out.println("Can not find file "+fileName);
+                return null;
+            }
+
+            input = jarFile.getInputStream(zipEntry);
+            bis = new BufferedInputStream(input);
+
+            int buff = bis.available();
+            //max memery buffer limit.
+            if(buff > 1024000){
+            	buff = 1024000;
+            }
+            
+            byte[] temp = new byte[buff];
+            int len = 0;
+            while ((len = bis.read(temp)) != -1) {
+            	sb.append(new String(temp, 0, len, StandardCharsets.UTF_8));
+            }
+        } catch (IOException ex) {
+            throw new RuntimeException("A valid file "+fileName+" is unavailable.");
+        } finally {
+            if (bis != null) {
+                try {
+					bis.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+
+            if (input != null) {
+                try {
+					input.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+            if(jarFile != null){
+           	 try {
+					jarFile.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        }
+
+        return sb.toString();
+   }
 }

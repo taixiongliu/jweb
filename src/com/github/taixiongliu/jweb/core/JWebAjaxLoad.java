@@ -13,6 +13,7 @@ public class JWebAjaxLoad extends JWebEleJSView{
 	public JWebAjaxLoad(JWebContext context, String name, boolean inflate) {
 		// TODO Auto-generated constructor stub
 		super(context, name);
+		ajaxLoadCode = new JWebAjaxLoadCode(getName());
 		if(inflate){
 			inflateView();
 			return ;
@@ -20,11 +21,9 @@ public class JWebAjaxLoad extends JWebEleJSView{
 		initView();
 	}
 	private void initView(){
-		ajaxLoadCode = new JWebAjaxLoadCode(getName());
 		context.e(ajaxLoadCode.create());
 	}
 	private void inflateView(){
-		ajaxLoadCode = new JWebAjaxLoadCode(getName());
 		context.e(ajaxLoadCode.inflate());
 	}
 	public static JWebAjaxLoad inflate(JWebContext context, String name){

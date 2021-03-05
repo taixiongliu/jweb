@@ -15,8 +15,9 @@ public class JWebButton extends JWebEleJSView{
 		this(context, text, type, context.named(), false);
 	}
 	public JWebButton(JWebContext context, String text, ButtonType type, String name, boolean inflate) {
-		super(context, name);
 		// TODO Auto-generated constructor stub
+		super(context, name);
+		buttonCode = new JWebButtonCode(getName());
 		if(inflate){
 			inflateView(text, type);
 			return ;
@@ -24,7 +25,6 @@ public class JWebButton extends JWebEleJSView{
 		initView(text, type);
 	}
 	private void initView(String text, ButtonType type){
-		buttonCode = new JWebButtonCode(getName());
 		if(type == null){
 			context.e(buttonCode.create(text));
 			return ;
@@ -32,12 +32,14 @@ public class JWebButton extends JWebEleJSView{
 		context.e(buttonCode.create(text,type.value()));
 	}
 	private void inflateView(String text, ButtonType type){
-		buttonCode = new JWebButtonCode(getName());
 		if(type == null){
 			context.e(buttonCode.inflate(text));
 			return ;
 		}
 		context.e(buttonCode.inflate(text,type.value()));
+	}
+	public static JWebButton inflate(JWebContext context, String text, ButtonType type, String name){
+		return new JWebButton(context, text, type, name, true);
 	}
 	
 	public void setWidth(String width){

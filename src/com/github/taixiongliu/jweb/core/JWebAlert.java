@@ -13,6 +13,7 @@ public class JWebAlert extends JWebEleJSView{
 	public JWebAlert(JWebContext context, String name, boolean inflate) {
 		// TODO Auto-generated constructor stub
 		super(context, name);
+		alertCode = new JWebAlertCode(getName());
 		if(inflate){
 			inflateView();
 			return ;
@@ -20,11 +21,9 @@ public class JWebAlert extends JWebEleJSView{
 		initView();
 	}
 	private void initView(){
-		alertCode = new JWebAlertCode(getName());
 		context.e(alertCode.create());
 	}
 	private void inflateView(){
-		alertCode = new JWebAlertCode(getName());
 		context.e(alertCode.inflate());
 	}
 	public static JWebAlert inflate(JWebContext context, String name){

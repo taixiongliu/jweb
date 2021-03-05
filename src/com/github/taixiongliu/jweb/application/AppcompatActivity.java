@@ -1,36 +1,45 @@
 package com.github.taixiongliu.jweb.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.taixiongliu.jweb.ComponentBean;
 import com.github.taixiongliu.jweb.Session;
 import com.github.taixiongliu.jweb.application.views.AppcompatLeftView;
 import com.github.taixiongliu.jweb.application.views.AppcompatTopView;
 import com.github.taixiongliu.jweb.base.JSBase;
-import com.github.taixiongliu.jweb.base.JSFunction;
 import com.github.taixiongliu.jweb.core.JWebAjaxLoad;
 import com.github.taixiongliu.jweb.core.JWebAlert;
 import com.github.taixiongliu.jweb.core.JWebConfirm;
 import com.github.taixiongliu.jweb.core.JWebContext;
 import com.github.taixiongliu.jweb.core.JWebLayout;
+import com.github.taixiongliu.jweb.core.JWebMenuLabel;
 import com.github.taixiongliu.jweb.core.base.JWebElement;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.core.utils.JWebTimer;
 import com.github.taixiongliu.jweb.core.utils.JWebWinInner;
 import com.github.taixiongliu.jweb.core.views.JWebMasking;
 import com.github.taixiongliu.jweb.handler.ClickHandler;
+import com.github.taixiongliu.jweb.handler.ItemClickHandler;
 import com.github.taixiongliu.jweb.handler.TimerHandler;
-import com.github.taixiongliu.jweb.widget.LineMenuWidget;
+import com.github.taixiongliu.jweb.opts.MenuLabelOpts;
 
 public abstract class AppcompatActivity extends Activity{
 	public abstract void onView(JWebContext context, JWebLayout root);
 	public abstract String systemName();
 	public abstract String userName();
 	public abstract String bottomInfo();
-	public abstract void onMenus(LineMenuWidget lineMenuWidget);
+	public abstract String versionInfo();
+	public abstract void onMenus(List<JWebMenuLabel> menus);
 	
 	protected JWebContext context;
 	protected JWebElement root;
+	protected JWebMasking masking;
 	protected JWebAjaxLoad ajaxLoad;
 	protected JWebAlert alert;
 	protected JWebConfirm confirm;
+	
+	private List<JWebMenuLabel> menus;
 	
 	static{
 		//定义全局js变量
@@ -54,34 +63,53 @@ public abstract class AppcompatActivity extends Activity{
 		this.context = context;
 		this.root = root;
 		
+		//initialize masking
+		masking = new JWebMasking(context);
+		root.appendChild(masking);
+		
+		//initialize menu
+		menus = new ArrayList<JWebMenuLabel>();
+		MenuLabelOpts homeOpts = new MenuLabelOpts();
+		homeOpts.setText("首页");
+		homeOpts.setIcon("icons/icon_home.png");
+		homeOpts.setOnItemClick(new ItemClickHandler(context) {
+			
+			@Override
+			public void onHandler(JWebContext ct, JWebView view) {
+				// TODO Auto-generated method stub
+				ct.log("home page.");
+			}
+		});
+		JWebMenuLabel mn_home = new JWebMenuLabel(context, homeOpts);
+		menus.add(mn_home);
+		onMenus(menus);
+		
 		//
 		ajaxLoad = new JWebAjaxLoad(context);
 		alert = new JWebAlert(context);
 		confirm = new JWebConfirm(context);
 		JWebWinInner winInner = new JWebWinInner(context);
-		JWebMasking masking = new JWebMasking(context);
-		root.appendChild(masking);
 		
 		JWebTimer close = new JWebTimer(context, new TimerHandler(context) {
 			
 			@Override
-			public void onHandler(JWebContext ct) {
+			public void onHandler(JWebContext ct, JWebView view) {
 				// TODO Auto-generated method stub
-				ct.e("if(left <= -240){return false;};left -= 24;leftView.ele.style.left = left+'px';"
-						+ "var pleft = left + 240;topView.ele.style.paddingLeft = left+'px';"
-						+ "bottomView.ele.style.paddingLeft = left+'px';contentView.ele.style.paddingLeft = pleft+'px';return turn;");
+				ct.e("console.log('timer in->');if(left <= -240){return false;};left -= 24;console.log('left->'+left);leftView.ele.style.left = left+'px';"
+						+ "var pleft = left + 240;topView.ele.style.paddingLeft = pleft+'px';"
+						+ "//bottomView.ele.style.paddingLeft = pleft+'px';//contentView.ele.style.paddingLeft = pleft+'px';\nreturn true;");
 			}
 		});
-		JWebTimer expand = new JWebTimer(context, new TimerHandler(context) {
-			
-			@Override
-			public void onHandler(JWebContext ct) {
-				// TODO Auto-generated method stub
-				ct.e("if(left >= 0){return false;};left += 24;leftView.ele.style.left = left+'px';"
-						+ "var pleft = left + 240;topView.ele.style.paddingLeft = left+'px';"
-						+ "bottomView.ele.style.paddingLeft = left+'px';contentView.ele.style.paddingLeft = pleft+'px';return turn;");
-			}
-		});
+//		JWebTimer expand = new JWebTimer(context, new TimerHandler(context) {
+//			
+//			@Override
+//			public void onHandler(JWebContext ct, JWebView view) {
+//				// TODO Auto-generated method stub
+//				ct.e("if(left >= 0){return false;};left += 24;leftView.ele.style.left = left+'px';"
+//						+ "var pleft = left + 240;topView.ele.style.paddingLeft = pleft+'px';"
+//						+ "bottomView.ele.style.paddingLeft = pleft+'px';contentView.ele.style.paddingLeft = pleft+'px';return true;");
+//			}
+//		});
 		
 		//ajaxLoad.setMsg("自定义加载内容");
 		//ajaxLoad.show();
@@ -214,20 +242,34 @@ public abstract class AppcompatActivity extends Activity{
 //		JWebLayout contentPanel = new JWebLayout(context, "jweb_content_panel");
 		
 		//--自定义的开始
-		AppcompatLeftView view = new AppcompatLeftView(context, winInner.getHeight(), bean, session);
-		AppcompatTopView top = new AppcompatTopView(context, masking, session, new ClickHandler(context) {
+		AppcompatLeftView left = new AppcompatLeftView(context, winInner.getHeight(), bean, session);
+		AppcompatTopView top = new AppcompatTopView(context, masking, session, new ClickHandler(context,close.base()) {
 			
 			@Override
-			public void onHandler(JWebContext ct) {
+			public void onHandler(JWebContext ct, JWebView view) {
 				// TODO Auto-generated method stub
-				ct.e("if(menuExpand){topView.");
+				//AppcompatTopView view = 
+				JWebTimer cls = (JWebTimer)getProperty(close.getName());
+				if(view != null){
+					AppcompatTopView v = (AppcompatTopView)view;
+					System.out.println("name:"+v.getName());
+				}
+				ct.log("nima");
+//				ct.e("if(menuExpand){topView.showExpand();");
+				cls.execute();
+				ct.log("nima2");
+				//top.showExpand();
 			}
-		});
-		winInner.addOnResizeHandler(view.getHandler());
+		}, menus, versionInfo());
+		winInner.addOnResizeHandler(left.getHandler());
 		
+		JWebLayout bottomView = JWebLayout.inflate(context, "bottomView", "admin_bottom_view");
+		bottomView.setAlign("center");
+//		session.getEntity()
+//		bottomView.setHtml();
+//		bottomView
 		
-		
-		root.appendChild(view);
+		root.appendChild(left);
 		root.appendChild(top);
 		//root.appendChild(topPanel);
 		//root.appendChild(bottomPanel);

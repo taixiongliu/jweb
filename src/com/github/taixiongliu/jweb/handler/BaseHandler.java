@@ -4,6 +4,7 @@ import com.github.taixiongliu.jweb.base.JSBase;
 import com.github.taixiongliu.jweb.core.JWebContext;
 import com.github.taixiongliu.jweb.core.base.JWeb;
 import com.github.taixiongliu.jweb.core.base.JWebFunction;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.event.EventHandler;
 import com.github.taixiongliu.jweb.event.IFunction;
 
@@ -11,30 +12,28 @@ public abstract class BaseHandler implements EventHandler{
 	protected JWebFunction function;
 	private JSBase[] properties;
 	private JWebContext rootContext;
+	private JWebView view;
 	public BaseHandler(JWebContext context, String parameter) {
 		// TODO Auto-generated constructor stub
-		setContext(context);
-		init(parameter, null);
+		this(context, parameter, (String)null);
 	}
 	public BaseHandler(JWebContext context, String parameter, String prefix) {
 		// TODO Auto-generated constructor stub
-		setContext(context);
+		this.rootContext = context;
 		init(parameter, prefix);
 	}
 	public BaseHandler(JWebContext context, String parameter, JSBase... properties) {
 		// TODO Auto-generated constructor stub
-		setContext(context);
-		this.properties = properties;
-		init(parameter, null);
+		this(context, parameter, null, properties);
 	}
 	public BaseHandler(JWebContext context, String parameter, String prefix, JSBase... properties) {
 		// TODO Auto-generated constructor stub
-		setContext(context);
 		this.properties = properties;
+		this.rootContext = context;
 		init(parameter, prefix);
 	}
-	public void setContext(JWebContext context){
-		this.rootContext = context;
+	public void bindView(JWebView view){
+		this.view = view;
 	}
 	private void init(String parameter, String prefix){
 		if(prefix == null){
@@ -43,7 +42,7 @@ public abstract class BaseHandler implements EventHandler{
 				@Override
 				public void onCallBack(JWebContext context) {
 					// TODO Auto-generated method stub
-					onHandler(context);
+					onHandler(context, view);
 				}
 			}, parameter);
 		}else{
@@ -52,17 +51,12 @@ public abstract class BaseHandler implements EventHandler{
 				@Override
 				public void onCallBack(JWebContext context) {
 					// TODO Auto-generated method stub
-					onHandler(context);
+					onHandler(context, view);
 				}
 			}, parameter, prefix);
 		}
-		
-		if(properties != null && properties.length > 0){
-			for(JSBase base : properties){
-				function.addProperty(base);
-			}
-		}
-		function.load();
+	}
+	private void replaceContext(){
 		//replace context back.
 		if(properties != null && properties.length > 0){
 			for(JSBase base : properties){
@@ -83,6 +77,13 @@ public abstract class BaseHandler implements EventHandler{
 	@Override
 	public String toCode() {
 		// TODO Auto-generated method stub
+		if(properties != null && properties.length > 0){
+			for(JSBase base : properties){
+				function.addProperty(base);
+			}
+		}
+		function.load();
+		replaceContext();
 		return function.toFunctionString();
 	}
 	public Object getProperty(String name){

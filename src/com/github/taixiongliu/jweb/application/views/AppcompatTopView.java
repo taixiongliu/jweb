@@ -1,122 +1,120 @@
 package com.github.taixiongliu.jweb.application.views;
 
+import java.util.List;
+
 import com.github.taixiongliu.jweb.Session;
+import com.github.taixiongliu.jweb.base.Expression;
 import com.github.taixiongliu.jweb.base.JSArray;
-import com.github.taixiongliu.jweb.base.JSObject;
+import com.github.taixiongliu.jweb.base.JSBase;
 import com.github.taixiongliu.jweb.core.JWebContext;
 import com.github.taixiongliu.jweb.core.JWebHLayout;
 import com.github.taixiongliu.jweb.core.JWebImage;
 import com.github.taixiongliu.jweb.core.JWebLayout;
 import com.github.taixiongliu.jweb.core.JWebMenuLabel;
+import com.github.taixiongliu.jweb.core.base.JWebBase;
+import com.github.taixiongliu.jweb.core.base.JWebView;
+import com.github.taixiongliu.jweb.core.utils.JWebAjax;
 import com.github.taixiongliu.jweb.core.views.JWebMasking;
+import com.github.taixiongliu.jweb.handler.AjaxCallbackHandler;
 import com.github.taixiongliu.jweb.handler.ClickHandler;
 import com.github.taixiongliu.jweb.handler.ItemClickHandler;
 import com.github.taixiongliu.jweb.opts.MenuLabelOpts;
+import com.github.taixiongliu.jweb.window.UpdatePasswdWindow;
 
 public class AppcompatTopView extends JWebLayout{
 	private JWebImage bimg;
-	public AppcompatTopView(JWebContext context, JWebMasking masking, Session session, ClickHandler handler) {
+	public AppcompatTopView(JWebContext context, JWebMasking masking, Session session, ClickHandler handler, List<JWebMenuLabel> menus, String version) {
 		// TODO Auto-generated constructor stub
 		super(context, "topView", "jweb_admin_top_view", true);
-		initView(context, masking, session, handler	);
+		initView(context, masking, session, handler, menus, version);
 	}
 	
-	private void initView(JWebContext context, JWebMasking masking, Session session, ClickHandler handler){
-		
+	private void initView(JWebContext context, JWebMasking masking, Session session, ClickHandler handler, List<JWebMenuLabel> menus, String version){
+		handler.bindView(this);
 		JWebLayout bar = new JWebLayout(context, "jweb_admin_top_bar_view");
-		bimg = new JWebImage(context, "img/chevronsLeft.png", "jweb_admin_top_bar_icon"); 
+		bimg = new JWebImage(context, "icons/chevronsLeft.png", "jweb_admin_top_bar_icon"); 
 		bar.addView(bimg);
 		bar.onClick(handler);
 		
 		addView(bar);
 		
 		JWebHLayout menu = new JWebHLayout(context, "jweb_admin_top_menu_view");
-		MenuLabelOpts opt1 = new MenuLabelOpts();
-		opt1.setText("首页");
-		opt1.setIcon("img/shouye.png");
-		opt1.setOnItemClick(new ItemClickHandler(context) {
-			
-			@Override
-			public void onHandler(JWebContext context) {
-				// TODO Auto-generated method stub
-				context.log("home page.");
+		
+		if(menus != null){
+			for(JWebMenuLabel ml: menus){
+				menu.addView(ml);
 			}
-		});
-		MenuLabelOpts opt2 = new MenuLabelOpts();
-		opt2.setText("关于");
-		
-		MenuLabelOpts opt3 = new MenuLabelOpts();
-		opt3.setText("案例");
-		opt3.setChildren(childs(context));
-		opt3.setMasking(masking);
-		JWebMenuLabel mn_home = new JWebMenuLabel(context, opt1);
-		JWebMenuLabel mn_about = new JWebMenuLabel(context, opt2);
-		JWebMenuLabel mn_case = new JWebMenuLabel(context, opt3);
-		
-		menu.addView(mn_home);
-		menu.addView(mn_about);
-		menu.addView(mn_case);
+		}
 		
 		addView(menu);
+		
+		UpdatePasswdWindow updpass = new UpdatePasswdWindow(context);
+		
+		JWebHLayout rMenu = new JWebHLayout(context, "jweb_admin_top_right_menu_view");
+		MenuLabelOpts versionOpts = new MenuLabelOpts();
+		versionOpts.setText("版本：V"+version);
+		versionOpts.setStyle("jweb_admin_top_right_menu_txt");
+		MenuLabelOpts menuOpts = new MenuLabelOpts();
+		menuOpts.setIcon("icons/icon_min_user.png");
+		menuOpts.setText(session.getEntity().getAccount());
+		menuOpts.setChildren(initChild(context, updpass));
+		menuOpts.setMasking(masking);
+		JWebMenuLabel mn_version = new JWebMenuLabel(context, versionOpts);
+		JWebMenuLabel mn_account = new JWebMenuLabel(context, menuOpts);
+		
+		rMenu.addView(mn_version);
+		rMenu.addView(mn_account);
+		addView(rMenu);
 	}
 	
 	public void showClose(){
-		bimg.setUrl("img/chevronsLeft.png");
+		bimg.setUrl("icons/chevronsLeft.png");
 	}
 	public void showExpand(){
-		bimg.setUrl("img/chevronsRight.png");
-	}
-	public void setPaddingLeft(int left){
-		context.e(bimg.getEle().getExp()+".style.paddingLeft="+left+"\"px\"");
+		bimg.setUrl("icons/chevronsRight.png");
 	}
 	
-	public JSArray childs(JWebContext context){
+	private JSArray initChild(JWebContext context, UpdatePasswdWindow updpass){
 		JSArray jsArray  = new JSArray();
-		JSObject jo1 = new JSObject();
-		jo1.putProperty("id", 1);
-		JSObject jo2 = new JSObject();
-		jo2.putProperty("id", 2);
-		JSObject jo3 = new JSObject();
-		jo3.putProperty("id", 3);
-		MenuLabelOpts cds = new MenuLabelOpts();
-		cds.setText("案例1");
-		cds.setData(jo1);
-		cds.setOnItemClick(new ItemClickHandler(context) {
+		MenuLabelOpts upOpts = new MenuLabelOpts();
+		upOpts.setText("修改密码");
+		upOpts.setOnItemClick(new ItemClickHandler(context,updpass.base()) {
 			
 			@Override
-			public void onHandler(JWebContext ct) {
+			public void onHandler(JWebContext ct, JWebView view) {
 				// TODO Auto-generated method stub
-				ct.log("111");
+				UpdatePasswdWindow window = (UpdatePasswdWindow)getProperty(updpass.getName());
+				window.show();
 			}
 		});
-		
-		MenuLabelOpts cds2 = new MenuLabelOpts();
-		cds2.setText("案例2");
-		cds2.setData(jo2);
-		cds2.setOnItemClick(new ItemClickHandler(context) {
+		MenuLabelOpts exitOpts = new MenuLabelOpts();
+		exitOpts.setText("安全退出");
+		exitOpts.setOnItemClick(new ItemClickHandler(context) {
 			
 			@Override
-			public void onHandler(JWebContext ct) {
+			public void onHandler(JWebContext ct, JWebView view) {
 				// TODO Auto-generated method stub
-				ct.log("2222");
+				JWebBase seesion = new JWebBase(ct, new Expression(ct.getLocalStorage("session")));
+				JWebBase json = new JWebBase(ct, new Expression(ct.jsonParse(seesion)));
+				JWebBase sid = new JWebBase(ct, json.getProperty("sid"));
+				JWebAjax ajax = new JWebAjax(ct);
+				JSBase base = new JSBase("sid", sid);
+				ajax.addParameter(base);
+				ajax.request("logout.jweb", new AjaxCallbackHandler(context) {
+					
+					@Override
+					public void onHandler(JWebContext ct2, JWebView view) {
+						// TODO Auto-generated method stub
+						Expression json = toJson(ct2);
+						whenCodeEquals(ct2, json, "errorCode",1000, ct2.urlReplaceLogin());
+						alertMsg(ct2, json, "errorMsg");
+					}
+				});
 			}
 		});
+		jsArray.addProperty(upOpts.toJSObject());
+		jsArray.addProperty(exitOpts.toJSObject());
 		
-		MenuLabelOpts cds3 = new MenuLabelOpts();
-		cds3.setText("案例2");
-		cds3.setData(jo3);
-		cds3.setOnItemClick(new ItemClickHandler(context) {
-			
-			@Override
-			public void onHandler(JWebContext ct) {
-				// TODO Auto-generated method stub
-				ct.log("3333");
-			}
-		});
-		
-		jsArray.addProperty(cds.toJSObject());
-		jsArray.addProperty(cds2.toJSObject());
-		jsArray.addProperty(cds3.toJSObject());
 		return jsArray;
 	}
 }

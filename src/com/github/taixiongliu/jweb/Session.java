@@ -2,14 +2,14 @@ package com.github.taixiongliu.jweb;
 
 public class Session {
 	private int id;
-	private Object entity;
+	private AuthorizationInfo entity;
 	private String sessionCode;
 	private String tokenCode;
 	public Session(int id) {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 	}
-	public Session(int id, Object entity, String sessionCode) {
+	public Session(int id, AuthorizationInfo entity, String sessionCode) {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.entity = entity;
@@ -19,10 +19,10 @@ public class Session {
 	public int getId() {
 		return id;
 	}
-	public Object getEntity() {
+	public AuthorizationInfo getEntity() {
 		return entity;
 	}
-	public void setEntity(Object entity) {
+	public void setEntity(AuthorizationInfo entity) {
 		this.entity = entity;
 	}
 	public String getSessionCode() {

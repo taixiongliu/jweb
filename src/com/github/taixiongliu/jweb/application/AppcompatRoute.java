@@ -45,7 +45,12 @@ public abstract class AppcompatRoute extends ApplicationRoute{
 		int page = 0;
 		Object obj = request.getParameter("page");
 		if(obj != null){
-			page = Integer.parseInt(obj.toString());
+			try {
+				page = Integer.parseInt(obj.toString());
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 		}
 		ComponentBean bean = JWebContextFactory.getInstance().getBean(page);
 		if(bean == null){
@@ -133,7 +138,7 @@ public abstract class AppcompatRoute extends ApplicationRoute{
 			return ;
 		}
 		//账号验证，没有缓存密码，需要重新获取账号信息
-		AuthorizationInfo entity = (AuthorizationInfo)session.getEntity();
+		AuthorizationInfo entity = session.getEntity();
 		AuthorizationInfo temp = getAuthorizationInfo(entity.getAccount());
 		if(temp == null){
 			response.setContent(response(403, "authorization disabled. #code:2"));

@@ -1,10 +1,12 @@
 package com.github.taixiongliu.jweb.core.base;
 
 import com.github.taixiongliu.jweb.base.Expression;
+import com.github.taixiongliu.jweb.base.JSBase;
 import com.github.taixiongliu.jweb.core.JWebContext;
 
 public class JWebView extends JWeb{
 	private String name;
+	private JSBase base;
 	public JWebView(JWebContext context,String name) {
 		// TODO Auto-generated constructor stub
 		super(context);
@@ -13,6 +15,7 @@ public class JWebView extends JWeb{
 		}else{
 			this.name = name;
 		}
+		base = new JSBase(name, this);
 	}
 	
 	public String getName() {
@@ -25,5 +28,9 @@ public class JWebView extends JWeb{
 	
 	public Expression getExpression(){
 		return new Expression(name);
+	}
+	
+	public JSBase base(){
+		return base;
 	}
 }

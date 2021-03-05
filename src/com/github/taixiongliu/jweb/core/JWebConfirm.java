@@ -8,13 +8,27 @@ import com.github.taixiongliu.jweb.handler.ItemClickHandler;
 public class JWebConfirm extends JWebEleJSView{
 	private JWebConfirmCode confirmCode;
 	public JWebConfirm(JWebContext context) {
-		super(context, context.named());
 		// TODO Auto-generated constructor stub
+		this(context, context.named(), false);
+	}
+	public JWebConfirm(JWebContext context, String name, boolean inflate) {
+		// TODO Auto-generated constructor stub
+		super(context, name);
+		confirmCode = new JWebConfirmCode(getName());
+		if(inflate){
+			inflateView();
+			return ;
+		}
 		initView();
 	}
 	private void initView(){
-		confirmCode = new JWebConfirmCode(getName());
 		context.e(confirmCode.create());
+	}
+	private void inflateView(){
+		context.e(confirmCode.inflate());
+	}
+	public static JWebConfirm inflate(JWebContext context, String name){
+		return new JWebConfirm(context, name, true);
 	}
 	
 	public void setMsg(String msg){

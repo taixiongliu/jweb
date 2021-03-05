@@ -19,6 +19,7 @@ import com.github.taixiongliu.jweb.core.JWebLayout;
 import com.github.taixiongliu.jweb.core.JWebMenuList;
 import com.github.taixiongliu.jweb.core.JWebVLayout;
 import com.github.taixiongliu.jweb.core.base.JWebBase;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.handler.MenuListItemHandler;
 import com.github.taixiongliu.jweb.handler.WindowResizeHandler;
 import com.github.taixiongliu.jweb.opts.HLayoutOpts;
@@ -32,7 +33,7 @@ public class AppcompatLeftView extends JWebLayout{
 	}
 	
 	private void initView(JWebContext context, Expression innerHeight, ComponentBean bean, Session session){
-		AuthorizationInfo info = (AuthorizationInfo)session.getEntity();
+		AuthorizationInfo info = session.getEntity();
 		//--top start.
 		//logo
 		JWebVLayout top = new JWebVLayout(context, "jweb_admin_left_top");
@@ -59,7 +60,7 @@ public class AppcompatLeftView extends JWebLayout{
 		menu = new JWebMenuList(context, new MenuListItemHandler(context) {
 			
 			@Override
-			public void onHandler(JWebContext ct) {
+			public void onHandler(JWebContext ct, JWebView view) {
 				// TODO Auto-generated method stub
 				JWebBase seesion = new JWebBase(ct, new Expression(ct.getLocalStorage("session")));
 				JWebBase json = new JWebBase(ct, new Expression(ct.jsonParse(seesion)));
@@ -86,7 +87,7 @@ public class AppcompatLeftView extends JWebLayout{
 		return new WindowResizeHandler(context, menu.base()) {
 			
 			@Override
-			public void onHandler(JWebContext ct) {
+			public void onHandler(JWebContext ct, JWebView view) {
 				// TODO Auto-generated method stub
 				JWebMenuList ml = (JWebMenuList)getProperty(menu.getName());
 				ml.setHeightSub(getHeight(), 196);

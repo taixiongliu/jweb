@@ -5,6 +5,7 @@ import com.github.taixiongliu.jweb.base.JSBase;
 import com.github.taixiongliu.jweb.core.JWebContext;
 import com.github.taixiongliu.jweb.core.JWebPopWindow;
 import com.github.taixiongliu.jweb.core.base.JWebBase;
+import com.github.taixiongliu.jweb.core.base.JWebView;
 import com.github.taixiongliu.jweb.core.utils.JWebAjax;
 import com.github.taixiongliu.jweb.form.FormButtonWidget;
 import com.github.taixiongliu.jweb.form.FormItem;
@@ -35,7 +36,7 @@ public class UpdatePasswdWindow extends JWebPopWindow{
 		FormButtonWidget fb = new FormButtonWidget(context, new ItemClickHandler(context, this.base()) {
 			
 			@Override
-			public void onHandler(JWebContext ct1) {
+			public void onHandler(JWebContext ct1, JWebView view) {
 				// TODO Auto-generated method stub
 				UpdatePasswdWindow wd = (UpdatePasswdWindow)getProperty(UpdatePasswdWindow.this.getName());
 				wd.hide();
@@ -43,7 +44,7 @@ public class UpdatePasswdWindow extends JWebPopWindow{
 		}, new ItemClickHandler(context, this.base()) {
 			
 			@Override
-			public void onHandler(JWebContext ct1) {
+			public void onHandler(JWebContext ct1, JWebView view) {
 				// TODO Auto-generated method stub
 				JWebBase seesion = new JWebBase(ct1, new Expression(ct1.getLocalStorage("session")));
 				JWebBase json = new JWebBase(ct1, new Expression(ct1.jsonParse(seesion)));
@@ -57,7 +58,7 @@ public class UpdatePasswdWindow extends JWebPopWindow{
 				ajax.request("upd_password.jweb", new AjaxCallbackHandler(context) {
 					
 					@Override
-					public void onHandler(JWebContext ct2) {
+					public void onHandler(JWebContext ct2, JWebView view) {
 						// TODO Auto-generated method stub
 						Expression json = toJson(ct2);
 						whenCodeEquals(ct2, json, "errorCode",1000, ct2.urlReplaceLogin());

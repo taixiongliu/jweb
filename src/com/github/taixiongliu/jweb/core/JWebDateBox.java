@@ -9,13 +9,27 @@ public class JWebDateBox extends JWebEleJSView{
 	private JWebDateBoxCode dateBoxCode;
 	
 	public JWebDateBox(JWebContext context) {
-		super(context, context.named());
 		// TODO Auto-generated constructor stub
+		this(context, context.named(), false);
+	}
+	public JWebDateBox(JWebContext context, String name, boolean inflate) {
+		// TODO Auto-generated constructor stub
+		super(context, name);
+		dateBoxCode = new JWebDateBoxCode(getName());
+		if(inflate){
+			inflateView();
+			return ;
+		}
 		initView();
 	}
 	private void initView(){
-		dateBoxCode = new JWebDateBoxCode(getName());
 		context.e(dateBoxCode.create());
+	}
+	private void inflateView(){
+		context.e(dateBoxCode.inflate());
+	}
+	public static JWebDateBox inflate(JWebContext context, String name){
+		return new JWebDateBox(context, name, true);
 	}
 	
 	public void setSelectUpdateHandler(EventHandler handler){

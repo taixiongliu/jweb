@@ -11,7 +11,7 @@ public abstract class AjaxCallbackHandler extends BaseHandler{
 	}
 	public AjaxCallbackHandler(JWebContext context, String prefix) {
 		// TODO Auto-generated constructor stub
-		super(context, "res",prefix);
+		super(context,"res",prefix);
 	}
 	
 	public Expression toJson(JWebContext context){
