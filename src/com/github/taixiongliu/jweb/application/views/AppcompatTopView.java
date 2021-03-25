@@ -59,19 +59,24 @@ public class AppcompatTopView extends JWebLayout{
 		menuOpts.setText(session.getEntity().getAccount());
 		menuOpts.setChildren(initChild(context, updpass));
 		menuOpts.setMasking(masking);
-		JWebMenuLabel mn_version = new JWebMenuLabel(context, versionOpts);
 		JWebMenuLabel mn_account = new JWebMenuLabel(context, menuOpts);
+		JWebMenuLabel mn_version = new JWebMenuLabel(context, versionOpts);
 		
-		rMenu.addView(mn_version);
 		rMenu.addView(mn_account);
+		rMenu.addView(mn_version);
+		
 		addView(rMenu);
 	}
 	
-	public void showClose(){
+	public void showClose(JWebContext ct){
+		bimg.setContext(ct);
 		bimg.setUrl("icons/chevronsLeft.png");
+		bimg.setContext(context);
 	}
-	public void showExpand(){
+	public void showExpand(JWebContext ct){
+		bimg.setContext(ct);
 		bimg.setUrl("icons/chevronsRight.png");
+		bimg.setContext(context);
 	}
 	
 	private JSArray initChild(JWebContext context, UpdatePasswdWindow updpass){

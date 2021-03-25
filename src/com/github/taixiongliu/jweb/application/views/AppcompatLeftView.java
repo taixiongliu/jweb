@@ -131,7 +131,7 @@ public class AppcompatLeftView extends JWebLayout{
 			if(children != null){
 				for(ComponentBean child : children){
 					JSObject temp = new JSObject();
-					temp.putProperty("data", "{id:"+child.getId()+"}");
+					temp.putProperty("data", new Expression("{id:"+child.getId()+"}"));
 					temp.putProperty("text", child.getMenuName());
 					temp.putProperty("icon", child.getIcon());
 					if(child.equals(page)){

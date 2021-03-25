@@ -17,7 +17,7 @@ public class FormButtonWidget extends JWebLayout{
 	}
 
 	private void init(ItemClickHandler cancelHandler, ItemClickHandler sureHandler){
-		JWebLayout clayout = new JWebLayout(context,"");
+		JWebLayout clayout = new JWebLayout(context);
 		IconLabelOpts copts = new IconLabelOpts();
 		copts.setText("取消");
 		copts.setIcon("icons/ic_cancel.png");
@@ -27,7 +27,7 @@ public class FormButtonWidget extends JWebLayout{
 		opts.setAlign("center");
 		clayout.addView(il_cancel);
 		
-		JWebLayout slayout = new JWebLayout(context,"");
+		JWebLayout slayout = new JWebLayout(context);
 		IconLabelOpts sopts = new IconLabelOpts();
 		sopts.setText("确认");
 		sopts.setIcon("icons/ic_sure.png");

@@ -20,6 +20,6 @@ public class JWebImageCode extends JWebEleJSCode{
 		return constructor("Img", url, style);
 	}
 	public String setUrl(String url){
-		return name+".ele.src = \""+url+"\"";
+		return name+".ele.src = \""+url+"\";";
 	}
 }
